@@ -12,7 +12,7 @@ logging.getLogger("tensorflow").setLevel(logging.ERROR)
 tf.autograph.set_verbosity(0)
 
 X,Y = load_coffee_data();
-print(X.shape, Y.shape)
+print(X.shape, Y.shape)## X ve Y'nin veri boyutlarını yazdırır
 
 plt_roast(X,Y)
 
@@ -23,3 +23,7 @@ norm_l.adapt(X)  # learns mean, variance
 Xn = norm_l(X)
 print(f"Temperature Max, Min post normalization: {np.max(Xn[:,0]):0.2f}, {np.min(Xn[:,0]):0.2f}")
 print(f"Duration    Max, Min post normalization: {np.max(Xn[:,1]):0.2f}, {np.min(Xn[:,1]):0.2f}")
+
+Xt = np.tile(Xn,(1000,1))#Satırları 1000 kez tekrar ettirir ve veri kümesini genişletmiş olur...
+Yt= np.tile(Y,(1000,1))
+print(Xt.shape, Yt.shape)
