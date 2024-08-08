@@ -27,3 +27,13 @@ print(f"Duration    Max, Min post normalization: {np.max(Xn[:,1]):0.2f}, {np.min
 Xt = np.tile(Xn,(1000,1))#Satırları 1000 kez tekrar ettirir ve veri kümesini genişletmiş olur...
 Yt= np.tile(Y,(1000,1))
 print(Xt.shape, Yt.shape)
+
+tf.random.set_seed(1234)  # applied to achieve consistent results
+model = Sequential(
+    [
+        tf.keras.Input(shape=(2,)),##bu modelin iki giriş özelliği (örneğin, sıcaklık ve süre) beklediğini belirtir.
+        Dense(3, activation='sigmoid', name = 'layer1'),
+        Dense(1, activation='sigmoid', name = 'layer2')
+     ]
+)
+model.summary()
