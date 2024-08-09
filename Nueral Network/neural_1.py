@@ -56,3 +56,20 @@ model.fit(    #Verileri eğitmeye yarayan fonksiyondur.
     Xt,Yt,
     epochs=10,  #İterasyon sayısı
 )
+
+W1 = np.array([
+    [-8.94,  0.29, 12.89],
+    [-0.17, -7.34, 10.79]] )
+b1 = np.array([-9.87, -9.28,  1.01])
+W2 = np.array([
+    [-31.38],
+    [-27.86],
+    [-32.79]])
+b2 = np.array([15.54])
+model.get_layer("layer1").set_weights([W1,b1])
+model.get_layer("layer2").set_weights([W2,b2])
+
+W1, b1 = model.get_layer("layer1").get_weights()#After fitting the weigths have been updated
+W2, b2 = model.get_layer("layer2").get_weights()
+print("W1:\n", W1, "\nb1:", b1)
+print("W2:\n", W2, "\nb2:", b2)
