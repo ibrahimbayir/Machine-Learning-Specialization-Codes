@@ -36,4 +36,23 @@ model = Sequential(
         Dense(1, activation='sigmoid', name = 'layer2')
      ]
 )
-model.summary()
+model.summary()##model hakkında bilgileri ekrana yazdırır.
+
+L1_num_params = 2 * 3 + 3   # W1 parameters  + b1 parameters
+L2_num_params = 3 * 1 + 1   # W2 parameters  + b2 parameters
+print("L1 params = ", L1_num_params, ", L2 params = ", L2_num_params  )
+
+W1, b1 = model.get_layer("layer1").get_weights()
+W2, b2 = model.get_layer("layer2").get_weights()
+print(f"W1{W1.shape}:\n", W1, f"\nb1{b1.shape}:", b1)
+print(f"W2{W2.shape}:\n", W2, f"\nb2{b2.shape}:", b2)
+
+model.compile(
+    loss = tf.keras.losses.BinaryCrossentropy(),
+    optimizer = tf.keras.optimizers.Adam(learning_rate=0.01),
+)
+
+model.fit(    #Verileri eğitmeye yarayan fonksiyondur.
+    Xt,Yt,
+    epochs=10,  #İterasyon sayısı
+)
