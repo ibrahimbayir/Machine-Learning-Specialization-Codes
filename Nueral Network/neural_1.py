@@ -80,3 +80,14 @@ X_test = np.array([
 X_testn = norm_l(X_test)
 predictions = model.predict(X_testn)
 print("predictions = \n", predictions)
+
+#To convert the probabilities to a decision, we apply a threshold:
+yhat = np.zeros_like(predictions)
+for i in range(len(predictions)):
+    if predictions[i] >= 0.5:
+        yhat[i] = 1
+    else:
+        yhat[i] = 0
+print(f"decisions = \n{yhat}")
+
+plt_layer(X,Y.reshape(-1,),W1,b1,norm_l)
