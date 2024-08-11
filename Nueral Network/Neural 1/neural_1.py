@@ -1,7 +1,7 @@
 import numpy as np
 import ipywidgets
 import matplotlib.pyplot as plt
-plt.style.use('./deeplearning.mplstyle')
+plt.style.use('deeplearning.mplstyle')
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -91,3 +91,5 @@ for i in range(len(predictions)):
 print(f"decisions = \n{yhat}")
 
 plt_layer(X,Y.reshape(-1,),W1,b1,norm_l)
+
+plt_output_unit(W2,b2)
