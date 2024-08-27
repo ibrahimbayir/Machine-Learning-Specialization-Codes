@@ -58,5 +58,44 @@ def eval_mse(y, yhat):
         err += (y[i] - yhat[i]) ** 2
     ### END CODE HERE ###
     err /= 2 * m
-
     return (err)
+
+    y_hat = np.array([2.4, 4.2])
+    y_tmp = np.array([2.3, 4.1])
+    eval_mse(y_hat, y_tmp)
+
+    # BEGIN UNIT TEST
+    test_eval_mse(eval_mse)
+    # END UNIT TEST
+
+    # create a model in sklearn, train on training data
+    degree = 10
+    lmodel = lin_model(degree)
+    lmodel.fit(X_train, y_train)
+
+    # predict on training data, find training error
+    yhat = lmodel.predict(X_train)
+    err_train = lmodel.mse(y_train, yhat)
+
+    # predict on test data, find error
+    yhat = lmodel.predict(X_test)
+    err_test = lmodel.mse(y_test, yhat)
+
+    print(f"training err {err_train:0.2f}, test err {err_test:0.2f}")
+
+    # plot predictions over data range
+    x = np.linspace(0, int(X.max()), 100)  # predict values for plot
+    y_pred = lmodel.predict(x).reshape(-1, 1)
+
+    plt_train_test(X_train, y_train, X_test, y_test, x, y_pred, x_ideal, y_ideal, degree)
+
+    # Generate  data
+    X, y, x_ideal, y_ideal = gen_data(40, 5, 0.7)
+    print("X.shape", X.shape, "y.shape", y.shape)
+
+    # split the data using sklearn routine
+    X_train, X_, y_train, y_ = train_test_split(X, y, test_size=0.40, random_state=1)
+    X_cv, X_test, y_cv, y_test = train_test_split(X_, y_, test_size=0.50, random_state=1)
+    print("X_train.shape", X_train.shape, "y_train.shape", y_train.shape)
+    print("X_cv.shape", X_cv.shape, "y_cv.shape", y_cv.shape)
+    print("X_test.shape", X_test.shape, "y_test.shape", y_test.shape)
