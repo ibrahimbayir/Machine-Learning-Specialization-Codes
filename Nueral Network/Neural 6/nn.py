@@ -99,3 +99,15 @@ def eval_mse(y, yhat):
     print("X_train.shape", X_train.shape, "y_train.shape", y_train.shape)
     print("X_cv.shape", X_cv.shape, "y_cv.shape", y_cv.shape)
     print("X_test.shape", X_test.shape, "y_test.shape", y_test.shape)
+
+    fig, ax = plt.subplots(1, 1, figsize=(4, 4))
+    ax.plot(x_ideal, y_ideal, "--", color="orangered", label="y_ideal", lw=1)
+    ax.set_title("Training, CV, Test", fontsize=14)
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+
+    ax.scatter(X_train, y_train, color="red", label="train")
+    ax.scatter(X_cv, y_cv, color=dlc["dlorange"], label="cv")
+    ax.scatter(X_test, y_test, color=dlc["dlblue"], label="test")
+    ax.legend(loc='upper left')
+    plt.show()
